@@ -1,14 +1,14 @@
 - name: deploy
-  hosts: all
+  hosts: localhost
   remote_user: root
 
   tasks:
-  - name: install openjdk 17
-    dnf:
-      name: java-17-openjdk-devel
-      state: latest
-  - name: setup a cronjob
-    ansible.builtin.cron:
-      name: "start java program"
-      minute: "3,13,23"
-      job: "java -jar ~/demo1.jar"
+    - name: install openjdk 17
+      dnf:
+        name: java-17-openjdk-devel
+        state: latest
+    - name: setup a cronjob
+      ansible.builtin.cron:
+        name: "start java program"
+        minute: "3,13,23"
+        job: "java -jar ~/demo1.jar"
