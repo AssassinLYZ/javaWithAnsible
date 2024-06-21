@@ -1,5 +1,5 @@
 - name: deploy
-  hosts: localhost
+  hosts: 20.84.100.119
   remote_user: root
 
   tasks:
@@ -7,6 +7,14 @@
       dnf:
         name: java-17-openjdk-devel
         state: latest
+    - name: copy script
+      ansible.builtin.copy:
+        src: /root/ops/ansible/restart_service.sh
+        dest: /root/restart_service.sh
+    - name: copy jar
+      ansible.builtin.copy:
+        src: /root/FunctionalJavaApp-1.0.0.jar
+        dest: /root/FunctionalJavaApp-1.0.0.jar
     - name: deploy spring application
       ansible.builtin.shell:
         "bash ~/restart_service.sh"
